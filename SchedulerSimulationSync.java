@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 
 // ANSI Color Codes for enhanced terminal output
 class Colors {
@@ -29,7 +30,6 @@ class Colors {
 // ⚠️ SHARED RESOURCES - These need synchronization! ⚠️
 class SharedResources {
     // TODO: Students will add synchronization mechanisms here
-
     // HINT: Use ReentrantLock for mutual exclusion
     // HINT: Use Semaphore for limiting concurrent access
     
@@ -43,38 +43,57 @@ class SharedResources {
 	public static final ReentrantLock completedProcessLock = new ReentrantLock();
 	public static final ReentrantLock waitingTimeLock = new ReentrantLock();
     public static final ReentrantLock logLock = new ReentrantLock();
-
-   
-    
-    
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
-    // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
-    
+    public static final Semaphore cpuSemaphore = new Semaphore(1);    
+
+
     // Method to increment context switch counter
-    public static void incrementContextSwitch() {
-        // TODO: Protect this critical section with a lock
-        // RACE CONDITION: Multiple threads might read and write simultaneously!
-        contextSwitchCount++;
+public static void incrementContextSwitch() {
+    // TODO: Protect this critical section with a lock
+        	contextSwitchLock.lock();
+    try {
+            contextSwitchCount++;
+    	}
+    finally {
+	        contextSwitchLock.unlock();
+    	}
+    
     }
     
     // Method to increment completed process counter
-    public static void incrementCompletedProcess() {
-        // TODO: Protect this critical section with a lock
-        completedProcessCount++;
+public static void incrementCompletedProcess() {
+    // TODO: Protect this critical section with a lock
+            completedProcessLock.lock();
+	try {
+		    completedProcessCount++;	
+	}
+	finally {
+		    completedProcessLock.unlock();
+	   }
     }
     
     // Method to add waiting time
-    public static void addWaitingTime(long time) {
-        // TODO: Protect this critical section with a lock
-        totalWaitingTime += time;
+public static void addWaitingTime(long time) {
+    // TODO: Protect this critical section with a lock
+        waitingTimeLock.lock();
+    try {
+    	totalWaitingTime += time;
     }
+    finally {
+    	waitingTimeLock.unlock();
+    	}   
+     }
     
     // Method to log execution
-    public static void logExecution(String message) {
+public static void logExecution(String message) {
         // TODO: Protect this critical section with a lock
-        // RACE CONDITION: ArrayList is not thread-safe!
-        executionLog.add(message);
+    try {
+		executionLog.add(message);
+	}
+   finally {
+	   logLock.unlock();
+        }
     }
 }
 
