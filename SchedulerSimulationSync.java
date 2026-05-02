@@ -29,6 +29,7 @@ class Colors {
 // ⚠️ SHARED RESOURCES - These need synchronization! ⚠️
 class SharedResources {
     // TODO: Students will add synchronization mechanisms here
+
     // HINT: Use ReentrantLock for mutual exclusion
     // HINT: Use Semaphore for limiting concurrent access
     
@@ -41,6 +42,11 @@ class SharedResources {
     public static final ReentrantLock contextSwitchLock = new ReentrantLock();
 	public static final ReentrantLock completedProcessLock = new ReentrantLock();
 	public static final ReentrantLock waitingTimeLock = new ReentrantLock();
+    public static final ReentrantLock logLock = new ReentrantLock();
+
+   
+    
+    
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
     // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
