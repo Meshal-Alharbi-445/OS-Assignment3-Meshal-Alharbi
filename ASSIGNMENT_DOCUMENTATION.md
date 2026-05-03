@@ -126,15 +126,21 @@ Stress testing by running the simulation multiple times and comparing results fo
 **Your Answer**:
 
 - What shared resource is affected?
+  
   Race Condation #1: The counter variable contextSwitchCount in the SharedResources class.
+  
   Race Condition #2: The executionLog (which is an ArrayList) in the SharedResources class.
 
-- Why is concurrent access a problem? 
+- Why is concurrent access a problem?
+  
  Race Condition #1: The increment operation (++) is not atomic; it involves three steps (read, modify, write). Multiple threads can read the same value before any of them writes the update.
+
  Race Condition #2: ArrayList is not thread-safe. When multiple threads call .add() at the same time, they may try to write to the same index in the underlying array.
 
-- What incorrect behavior could occur? 
+- What incorrect behavior could occur?
+  
   Race Condition #1: "Lost updates" occur, where the final number of context switches displayed is lower than the actual number of times they happened.
+  
   Race Condition #2: This can lead to a ConcurrentModificationException causing the program to crash, or it can cause data corruption where log entries overwrite each other or disappear.
 
 [Your answer here - 4-6 sentences with code examples]
