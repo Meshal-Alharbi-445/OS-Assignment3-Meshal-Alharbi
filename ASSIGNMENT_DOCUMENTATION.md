@@ -14,7 +14,7 @@
 > Set sharing to "Anyone with the link can view".
 > Test the link in incognito/private mode before submitting.
 
-**Video Link**: [](https://drive.google.com/file/d/19ezMcM6XccyaubXopq5Fw9yb4GOe2Ior/view?usp=sharing)]
+**Video Link**: [(https://drive.google.com/file/d/19ezMcM6XccyaubXopq5Fw9yb4GOe2Ior/view?usp=sharing)]
 
 **Video filename**: `[445050105]_Assignment3_Synchronization.mp4`
 
