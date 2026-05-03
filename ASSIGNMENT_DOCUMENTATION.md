@@ -376,15 +376,17 @@ Give TWO examples where synchronization is critical:
 
 ## Part 6: GitHub Repository Information
 
-**Repository URL**: 
+**Repository URL**: https://github.com/Meshal-Alharbi-445/OS-Assignment3-Meshal-Alharbi.git
 
-**Number of commits**: 
+**Number of commits**: 6
 
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. Set my student ID:445050105
+2. ReentrantLocks to protect shared counters (contextSwitcCount, completedProcessCount, totalWaitingTime)
+3. Implemented Semaphore for CPU access control
+4. Implemented thread-safety for all shared counters and execution log using ReentrantLocks
+5.Added CPU semaphore acquisition and release in Process run method to ensure controlled access for concurrent execution.
+6.Fix race condition in logExecution by adding missing lock
 
 ---
 
