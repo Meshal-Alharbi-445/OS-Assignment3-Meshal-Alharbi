@@ -88,6 +88,7 @@ public static void addWaitingTime(long time) {
     // Method to log execution
 public static void logExecution(String message) {
         // TODO: Protect this critical section with a lock
+        logLock.lock();
     try {
 		executionLog.add(message);
 	}
